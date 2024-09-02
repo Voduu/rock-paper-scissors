@@ -15,14 +15,15 @@ function playGame() {
     displayScore();
 
     function playRound() {
-        const humanChoice = getHumanChoice();
+        const validChoices = ["rock", "paper", "scissors"]
+        const humanChoice = getHumanChoice(validChoices);
 
         if (humanChoice == null) {
             console.log("Game canceled.");
             return 1;
         }
 
-        const computerChoice = getComputerChoice();
+        const computerChoice = getComputerChoice(validChoices);
     
          if (checkChoices(humanChoice, computerChoice) == 'tie') {
             console.log(`It's a tie! We both chose ${humanChoice}.`);
@@ -66,27 +67,12 @@ function playGame() {
     }
 }
 
-function getComputerChoice() {
+function getComputerChoice(validChoices) {
     choice = Math.floor(Math.random() * 3) + 1;
-
-    switch (choice) {
-        case 1:
-            return "rock";
-            break;
-        case 2:
-            return "paper";
-            break;
-        case 3:
-            return "scissors";
-            break;
-        default:
-            return "error";
-            break;
-    }
+    return validChoices[choice - 1];
 }
 
-function getHumanChoice() {
-    const validChoices = ["rock", "paper", "scissors"];
+function getHumanChoice(validChoices) {
     let choice;
 
     while (validChoices.includes(choice) == false) {
