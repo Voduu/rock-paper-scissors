@@ -1,49 +1,15 @@
 playGame();
 
-function getComputerChoice() {
-    choice = Math.floor(Math.random() * 3) + 1;
-
-    switch (choice) {
-        case 1:
-            return "rock";
-            break;
-        case 2:
-            return "paper";
-            break;
-        case 3:
-            return "scissors";
-            break;
-        default:
-            return "error";
-            break;
-    }
-}
-
-function getHumanChoice() {
-    const validChoices = ["rock", "paper", "scissors"];
-    let choice;
-
-    while (validChoices.includes(choice) == false) {
-        choice = prompt("Please select an option: rock, paper, or scissors?");
-        
-        if (choice == null) {
-            break;
-        }
-
-        choice = choice.toLowerCase();
-    }
-    return choice;
-}
-
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
+    const TOTAL_ROUNDS = 5;
 
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-    playRound();
+    for (let i = 0; i < TOTAL_ROUNDS; i++) {
+        playRound();
+    }
+
+    displayScore();
 
     function playRound() {
         const humanChoice = getHumanChoice();
@@ -77,4 +43,51 @@ function playGame() {
             return 'computer';
         }
     }
+    
+    function displayScore() {
+        if (humanScore > computerScore) {
+            console.log(`Well done! You win with ${humanScore} point(s) against`
+                + ` my ${computerScore} point(s)!`);
+        } else if (humanScore < computerScore) {
+            console.log(`Better luck next time! You lose with ${humanScore} ` +
+                `point(s) against my ${computerScore} point(s)!`)
+        } else {
+            console.log(`We both had ${humanScore} point(s)! Great game!`);
+        }
+    }
+}
+
+function getComputerChoice() {
+    choice = Math.floor(Math.random() * 3) + 1;
+
+    switch (choice) {
+        case 1:
+            return "rock";
+            break;
+        case 2:
+            return "paper";
+            break;
+        case 3:
+            return "scissors";
+            break;
+        default:
+            return "error";
+            break;
+    }
+}
+
+function getHumanChoice() {
+    const validChoices = ["rock", "paper", "scissors"];
+    let choice;
+
+    while (validChoices.includes(choice) == false) {
+        choice = prompt("Please select an option: rock, paper, or scissors?");
+        
+        if (choice == null) {
+            break;
+        }
+
+        choice = choice.toLowerCase();
+    }
+    return choice;
 }
