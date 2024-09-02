@@ -6,13 +6,22 @@ function playGame() {
     const TOTAL_ROUNDS = 5;
 
     for (let i = 0; i < TOTAL_ROUNDS; i++) {
-        playRound();
+        let result = playRound();
+        if (result == 1) {
+            break;
+        }
     }
 
     displayScore();
 
     function playRound() {
         const humanChoice = getHumanChoice();
+
+        if (humanChoice == null) {
+            console.log("Game canceled.");
+            return 1;
+        }
+
         const computerChoice = getComputerChoice();
     
          if (checkChoices(humanChoice, computerChoice) == 'tie') {
