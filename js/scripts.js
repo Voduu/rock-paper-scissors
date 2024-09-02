@@ -16,3 +16,19 @@ function getComputerChoice() {
             break;
     }
 }
+
+function getHumanChoice() {
+    const validChoices = ["rock", "paper", "scissors"];
+    let choice;
+
+    while (validChoices.includes(choice) == false) {
+        choice = prompt("Please select an option: rock, paper, or scissors?");
+        
+        if (choice == null) {
+            break;
+        }
+
+        choice = choice.toLowerCase();
+    }
+    return choice;
+}
